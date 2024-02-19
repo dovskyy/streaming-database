@@ -11,7 +11,6 @@ public class Movie {
     private Long id;
 
     private String title;
-    private String genre;
 
     @ManyToMany
     @JoinTable(
@@ -29,6 +28,9 @@ public class Movie {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private List<Genre> genres;
+
+    @ManyToMany(mappedBy = "movies")
+    private List<StreamingPlatform> streamingPlatforms;
 
 
 

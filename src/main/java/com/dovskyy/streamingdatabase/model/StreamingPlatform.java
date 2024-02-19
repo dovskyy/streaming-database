@@ -1,9 +1,8 @@
 package com.dovskyy.streamingdatabase.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 /*
     * This class represents the StreamingPlatform entity. For example, Netflix, Amazon Prime, etc.
@@ -14,4 +13,12 @@ public class StreamingPlatform {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @ManyToMany
+    @JoinTable(
+            name = "movie_streaming_platform",
+            joinColumns = @JoinColumn(name = "streaming_platform_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
+    private List<Movie> movies;
 }
